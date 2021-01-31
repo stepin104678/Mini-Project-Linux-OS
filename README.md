@@ -23,16 +23,16 @@ The aim of the project is to create a bus tracking system in the bus stand in wh
 ## IMPLEMENTATION
 
 ### MUTEX
-1) Goto the Mutex folder	-	cd Mutex
-2) Run the makefile		-	make
-3) Run the sender object file 	- 	./send.out
+1) Goto the Mutex folder	    -   cd Mutex
+2) Run the makefile		        -	make
+3) Run the sender object file 	-> 	./send.out
 4) Give 5 inputs.
-5) Run the receiver object file - 	./receive.out
+5) Run the receiver object file -> 	./receive.out
 6) O/P will be displayed.
 
 ### SEMAPHORE
 1) Goto the Semaphore folder	-	cd Semaphore
-2) Run the makefile 		- 	make
+2) Run the makefile 		    - 	make
 3) Run the sender object file	-> 	./send.out
 4) Give 5 inputs
 5) Run the receiver object file -> 	./receive.out
