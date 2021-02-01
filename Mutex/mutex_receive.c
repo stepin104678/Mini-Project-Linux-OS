@@ -1,3 +1,4 @@
+// BUS TRACKING SYSTEM
 #include <stdio.h>
 #include <string.h>
 #include <pthread.h>
@@ -11,6 +12,7 @@ pthread_mutex_t lock;
 int time1=1, time2=2;
 
 struct msg_buff { 
+	long mesg_type; 
 	char mesg_text[100]; 
 } message; 
 
@@ -44,7 +46,8 @@ void* m_receiver(void *arg)
 
 int main(void)
 {
-    int i=0, err;
+    int i=0;
+    int err;
 
     if (pthread_mutex_init(&lock, NULL) != 0)
     {

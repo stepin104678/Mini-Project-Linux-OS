@@ -1,3 +1,4 @@
+// BUS TRACKING SYSTEM
 #include <stdio.h>
 #include <string.h>
 #include <pthread.h>
@@ -11,11 +12,13 @@ pthread_mutex_t lock;
 int time1=1, time2=2;
 
 struct msg_buff { 
+	long mesg_type; 
 	char mesg_text[100]; 
 } message; 
 
 void* m_sender(void *arg)
 {
+
 	key_t key; 
 	int msgid;
 	
@@ -24,6 +27,7 @@ void* m_sender(void *arg)
 
 	// msgget creates a message queue and returns identifier 
 	msgid = msgget(key, 0666 | IPC_CREAT); 
+	message.mesg_type = 1; 
 	
 	//Locking
 	pthread_mutex_lock(&lock);
@@ -31,8 +35,8 @@ void* m_sender(void *arg)
 	printf("Enter the no. buses entering the bus stand from %d to %d: ",time1,time2); 
 	time1++;
 	time2++;
-    
-    scanf("%s", message.mesg_text);
+
+	fgets(message.mesg_text,100,stdin); 
 
 	// msgsnd to send message 
 	msgsnd(msgid, &message, sizeof(message), 0); 
@@ -43,9 +47,10 @@ void* m_sender(void *arg)
 	return NULL;
 }
 
-int main()
+int main(void)
 {
-    int i=0, err;
+    int i=0;
+    int err;
 
     if (pthread_mutex_init(&lock, NULL) != 0)
     {
@@ -66,7 +71,6 @@ int main()
     pthread_join(my_thread[2], NULL);
     pthread_join(my_thread[3], NULL);
     pthread_join(my_thread[4], NULL);
-
     pthread_mutex_destroy(&lock);
 
     return 0;
